@@ -119,3 +119,13 @@ elif menu == "Logistic Regression":
     ax.set_ylabel('Aktual')
     ax.set_xlabel('Prediksi')
     st.pyplot(fig)
+
+    st.subheader("Tabel Hasil Prediksi (Data Uji)")
+    hasil_prediksi = X_test.copy()
+    hasil_prediksi['Outcome Aktual'] = y_test.values
+    hasil_prediksi['Outcome Prediksi'] = y_pred
+    hasil_prediksi['Status'] = np.where(
+        hasil_prediksi['Outcome Aktual'] == hasil_prediksi['Outcome Prediksi'],
+        'Benar', 'Salah'
+    )
+    st.dataframe(hasil_prediksi, use_container_width=True)
